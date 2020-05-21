@@ -13,6 +13,9 @@
 		E06E7B49247672560004281F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E06E7B47247672560004281F /* Main.storyboard */; };
 		E06E7B4B247672580004281F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06E7B4A247672580004281F /* Assets.xcassets */; };
 		E06E7B4E247672580004281F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E06E7B4C247672580004281F /* LaunchScreen.storyboard */; };
+		E06E7B57247672A70004281F /* PhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E7B56247672A70004281F /* PhoneVC.swift */; };
+		E06E7B59247672B90004281F /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E7B58247672B90004281F /* LoginVC.swift */; };
+		E06E7B5B247672CE0004281F /* workplaceCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E7B5A247672CE0004281F /* workplaceCV.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		E06E7B4A247672580004281F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E06E7B4D247672580004281F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E06E7B4F247672580004281F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E06E7B56247672A70004281F /* PhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVC.swift; sourceTree = "<group>"; };
+		E06E7B58247672B90004281F /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		E06E7B5A247672CE0004281F /* workplaceCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workplaceCV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		E06E7B40247672560004281F /* WorkRe */ = {
 			isa = PBXGroup;
 			children = (
+				E06E7B55247672790004281F /* View */,
 				E06E7B41247672560004281F /* AppDelegate.swift */,
 				E06E7B43247672560004281F /* SceneDelegate.swift */,
 				E06E7B45247672560004281F /* ViewController.swift */,
@@ -65,6 +72,16 @@
 				E06E7B4F247672580004281F /* Info.plist */,
 			);
 			path = WorkRe;
+			sourceTree = "<group>";
+		};
+		E06E7B55247672790004281F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E06E7B56247672A70004281F /* PhoneVC.swift */,
+				E06E7B58247672B90004281F /* LoginVC.swift */,
+				E06E7B5A247672CE0004281F /* workplaceCV.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +158,9 @@
 				E06E7B46247672560004281F /* ViewController.swift in Sources */,
 				E06E7B42247672560004281F /* AppDelegate.swift in Sources */,
 				E06E7B44247672560004281F /* SceneDelegate.swift in Sources */,
+				E06E7B57247672A70004281F /* PhoneVC.swift in Sources */,
+				E06E7B59247672B90004281F /* LoginVC.swift in Sources */,
+				E06E7B5B247672CE0004281F /* workplaceCV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
