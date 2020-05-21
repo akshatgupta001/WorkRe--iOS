@@ -16,6 +16,8 @@
 		E06E7B57247672A70004281F /* PhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E7B56247672A70004281F /* PhoneVC.swift */; };
 		E06E7B59247672B90004281F /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E7B58247672B90004281F /* LoginVC.swift */; };
 		E06E7B5B247672CE0004281F /* workplaceCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E7B5A247672CE0004281F /* workplaceCV.swift */; };
+		E0D2AB232476EF110098DE40 /* workplaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D2AB212476EF110098DE40 /* workplaceTableViewCell.swift */; };
+		E0D2AB242476EF110098DE40 /* workplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0D2AB222476EF110098DE40 /* workplaceTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		E06E7B56247672A70004281F /* PhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVC.swift; sourceTree = "<group>"; };
 		E06E7B58247672B90004281F /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E06E7B5A247672CE0004281F /* workplaceCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workplaceCV.swift; sourceTree = "<group>"; };
+		E0D2AB212476EF110098DE40 /* workplaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workplaceTableViewCell.swift; sourceTree = "<group>"; };
+		E0D2AB222476EF110098DE40 /* workplaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = workplaceTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		E06E7B40247672560004281F /* WorkRe */ = {
 			isa = PBXGroup;
 			children = (
+				E0D2AB202476EEC60098DE40 /* TableViewCell */,
 				E06E7B55247672790004281F /* View */,
 				E06E7B41247672560004281F /* AppDelegate.swift */,
 				E06E7B43247672560004281F /* SceneDelegate.swift */,
@@ -82,6 +87,15 @@
 				E06E7B5A247672CE0004281F /* workplaceCV.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E0D2AB202476EEC60098DE40 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E0D2AB212476EF110098DE40 /* workplaceTableViewCell.swift */,
+				E0D2AB222476EF110098DE40 /* workplaceTableViewCell.xib */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +158,7 @@
 			files = (
 				E06E7B4E247672580004281F /* LaunchScreen.storyboard in Resources */,
 				E06E7B4B247672580004281F /* Assets.xcassets in Resources */,
+				E0D2AB242476EF110098DE40 /* workplaceTableViewCell.xib in Resources */,
 				E06E7B49247672560004281F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0D2AB232476EF110098DE40 /* workplaceTableViewCell.swift in Sources */,
 				E06E7B46247672560004281F /* ViewController.swift in Sources */,
 				E06E7B42247672560004281F /* AppDelegate.swift in Sources */,
 				E06E7B44247672560004281F /* SceneDelegate.swift in Sources */,

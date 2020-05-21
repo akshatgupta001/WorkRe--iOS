@@ -8,23 +8,97 @@
 
 import UIKit
 
-class workplaceCV: ViewController {
+class workplaceCV: ViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODc5MTE2NzQwIiwiaXNzIjoid29ya3JlLnRycm9oaXRoLmNvbSIsInJvbGUiOiJ1c2VyIiwidWlkIjo3MSwiY29udGFjdCI6IjEyMzQ1Njc4OTAiLCJpYXQiOjE1OTAwODAzMTUsImV4cCI6MTU5MDI1MzExNX0.jOTe7GhJYOnxeEUbDTHTdxXxQcVa7H7pCCeKijTNuyU"
+    
+    var cafes :[String] = []
+    var addresses: [String] = []
+    
+    @IBOutlet weak var workplaceTableView: UITableView!
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cafes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let ncell = workplaceTableView.dequeueReusableCell(withIdentifier: "workplace", for: indexPath) as! workplaceTableViewCell
+               ncell.cafe_name.text = cafes[indexPath.row]
+        
+               return ncell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 158
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        workplaceTableView.delegate = self
+        workplaceTableView.dataSource = self
+        
+        workplaceTableView.register(workplaceTableViewCell.self, forCellReuseIdentifier: "workplace")
+        workplaceTableView.register(UINib(nibName: "workplaceTableViewCell", bundle: nil), forCellReuseIdentifier: "workplace")
+        getData()
+        
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func getData(){
+        let url = URL(string: "https://demoapi.workre.co/workplace")!
+        let req = NSMutableURLRequest(url: url)
+        let request:URLRequest
+        req.httpMethod = "GET"
+        //req.addValue("Keep-Alive", forHTTPHeaderField: "Connection")
+        // req.setValue("application/json", forHTTPHeaderField: "Accept")
+        //let configuration = URLSessionConfiguration.default
+        req.setValue(token, forHTTPHeaderField: "Authorization")
+        request = req as URLRequest
+        
+        URLSession.shared.dataTask(with: request) { (data, response, err) -> Void  in
+            
+            
+            if(err == nil){
+                do{
+                    let data: Data = data! // received from a network request, for example
+                    let json = try? JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
+                    var i = 0
+                    if let places = json?["arrayWorkplace"] as? [Any]{
+                        for place in places{
+                            i = i+1
+                            if let place = place as? [String:Any]{
+                              
+                                let name = place["name"]
+                                let address = place["address"]
+                                self.cafes.append(name! as! String)
+                                self.addresses.append(address! as! String)
+                                
+                                // self.fields.append(record as! [String])
+                                
+                                
+                            }
+                        }//end of for user
+                        print(self.cafes.count)
+                        
+                        DispatchQueue.global().async { [weak self] in
+                            DispatchQueue.main.async {
+                                
+                                self?.workplaceTableView.reloadData()
+                                
+                            }
+                        }
+                        
+                    }//end of if let user
+                    
+                }
+                catch{
+                    print("captcha error: \(err.debugDescription)")
+                }
+            }else{
+                print("data not found error : \(err.debugDescription)")
+            }
+            }.resume()
+        
     }
-    */
 
 }
