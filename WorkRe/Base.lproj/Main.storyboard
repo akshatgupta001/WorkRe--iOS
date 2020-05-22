@@ -307,7 +307,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <tabBarItem tag="1" title="Browse" image="house.fill" catalog="system" selectedImage="home" id="nsC-QC-qPr"/>
+                                    <tabBarItem tag="1" title="Browse" image="house.fill" catalog="system" id="nsC-QC-qPr"/>
                                     <tabBarItem tag="2" title="Saved" image="heart.fill" catalog="system" id="JXd-fL-5XU"/>
                                     <tabBarItem tag="3" title="Bookings" image="book.fill" catalog="system" badgeValue="1" id="vBD-RQ-IAa"/>
                                     <tabBarItem tag="4" title="Profile" image="user" id="ds6-pO-n6h"/>
@@ -439,7 +439,6 @@
         <image name="cafe" width="275" height="183"/>
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="heart.fill" catalog="system" width="64" height="54"/>
-        <image name="home" width="24" height="24"/>
         <image name="house.fill" catalog="system" width="64" height="52"/>
         <image name="login" width="378" height="137"/>
         <image name="phone" width="386" height="566"/>

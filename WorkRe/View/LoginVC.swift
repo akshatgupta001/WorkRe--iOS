@@ -19,6 +19,7 @@ class LoginVC: ViewController {
     @IBOutlet weak var numberLabel: UILabel!
     
     var number : String!
+    var token : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,8 @@ class LoginVC: ViewController {
         fifth.delegate = self as? UITextFieldDelegate
         sixth.delegate = self as? UITextFieldDelegate
 
-
+        first.becomeFirstResponder()
+        
         first.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         second.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         third.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
@@ -42,7 +44,22 @@ class LoginVC: ViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func verifyBtnPressed(_ sender: Any) {
+        getData(number: number!)
+        
+        while(token == nil){
+            
+        }
         performSegue(withIdentifier: "showWorkplace", sender: nil)
+        //performSegue(withIdentifier: "showWorkplace", sender: nil)
+        // segue performed only if valid login
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+               if(segue.identifier == "showWorkplace"){
+                   let destinationVC = segue.destination as! workplaceCV
+                   destinationVC.token = self.token
+                   
+               }
+               
     }
     @objc func textFieldDidChange(textField: UITextField){
 
@@ -71,17 +88,66 @@ class LoginVC: ViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    func getData(number : String){
+        let url = URL(string: "https://demoapi.workre.co/phone/login")!
+        let req = NSMutableURLRequest(url: url)
+        let request:URLRequest
+        req.httpMethod = "POST"
+        
+        let params = ["username":number,
+                 "password":"123456"]
+        //req.addValue("Keep-Alive", forHTTPHeaderField: "Connection")
+         req.setValue("application/json", forHTTPHeaderField: "Accept")
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        //let configuration = URLSessionConfiguration.default
+        
+        
+        do {
+               req.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+           } catch let error {
+               print(error.localizedDescription)
+           }
+         request = req as URLRequest
+        
+        //create the session object
+           let session = URLSession.shared
+        
+        //create dataTask using the session object to send data to the server
+           let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+               guard error == nil else {
+                   return
+               }
+
+               guard let data = data else {
+                   return
+               }
+
+               do {
+                   //create json object from data
+                   if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                       print(json)
+                    let token_value = json["token"] as! String
+                    self.token = token_value
+                    
+                    
+                    
+                       // handle json...
+                   }
+               } catch let error {
+                   print(error.localizedDescription)
+               }
+           })
+           task.resume()
+        
+            
     }
-    */
 
+    
 }
+
 extension LoginVC: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""

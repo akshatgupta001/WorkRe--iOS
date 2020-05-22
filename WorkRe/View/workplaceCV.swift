@@ -10,7 +10,8 @@ import UIKit
 
 class workplaceCV: ViewController, UITableViewDelegate, UITableViewDataSource{
     
-    let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODc5MTE2NzQwIiwiaXNzIjoid29ya3JlLnRycm9oaXRoLmNvbSIsInJvbGUiOiJ1c2VyIiwidWlkIjo3MSwiY29udGFjdCI6IjEyMzQ1Njc4OTAiLCJpYXQiOjE1OTAwODAzMTUsImV4cCI6MTU5MDI1MzExNX0.jOTe7GhJYOnxeEUbDTHTdxXxQcVa7H7pCCeKijTNuyU"
+   
+    var token : String!
     
     var cafes :[String] = []
     var addresses: [String] = []
@@ -52,7 +53,8 @@ class workplaceCV: ViewController, UITableViewDelegate, UITableViewDataSource{
         //req.addValue("Keep-Alive", forHTTPHeaderField: "Connection")
         // req.setValue("application/json", forHTTPHeaderField: "Accept")
         //let configuration = URLSessionConfiguration.default
-        req.setValue(token, forHTTPHeaderField: "Authorization")
+        let token_value = "Bearer "+self.token
+        req.setValue(token_value, forHTTPHeaderField: "Authorization")
         request = req as URLRequest
         
         URLSession.shared.dataTask(with: request) { (data, response, err) -> Void  in
