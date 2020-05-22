@@ -44,12 +44,14 @@ class LoginVC: ViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func verifyBtnPressed(_ sender: Any) {
-        getData(number: number!)
         
-        while(token == nil){
-            
-        }
-        performSegue(withIdentifier: "showWorkplace", sender: nil)
+        var password = "" + first.text! + second.text!
+        password = password + third.text! + fourth.text!
+        password = password + fifth.text! + sixth.text!
+        getData(number: number!, password : password)
+        
+        
+        
         //performSegue(withIdentifier: "showWorkplace", sender: nil)
         // segue performed only if valid login
     }
@@ -88,14 +90,14 @@ class LoginVC: ViewController {
     }
     
 
-    func getData(number : String){
+    func getData(number : String, password : String){
         let url = URL(string: "https://demoapi.workre.co/phone/login")!
         let req = NSMutableURLRequest(url: url)
         let request:URLRequest
         req.httpMethod = "POST"
         
         let params = ["username":number,
-                 "password":"123456"]
+                 "password":password]
         //req.addValue("Keep-Alive", forHTTPHeaderField: "Connection")
          req.setValue("application/json", forHTTPHeaderField: "Accept")
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -125,20 +127,37 @@ class LoginVC: ViewController {
                    return
                }
 
-               do {
-                   //create json object from data
-                   if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                       print(json)
-                    let token_value = json["token"] as! String
-                    self.token = token_value
-                    
-                    
-                    
-                       // handle json...
-                   }
-               } catch let error {
-                   print(error.localizedDescription)
-               }
+            if let httpStatus = response as? HTTPURLResponse {
+                let status_code = httpStatus.statusCode
+                if(status_code == 200){
+                    do {
+                              //create json object from data
+                              if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                                  print(json)
+                               let token_value = json["token"] as! String
+                               self.token = token_value
+                                DispatchQueue.main.async(execute: {
+                                    self.performSegue(withIdentifier: "showWorkplace", sender: self)
+                               })
+                               
+                               
+                                  // handle json...
+                              }
+                          } catch let error {
+                              print(error.localizedDescription)
+                          }
+                }
+                else{
+                    let alert = UIAlertController(title: "Invalid Credentials ", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    }))
+                    DispatchQueue.main.async(execute: {
+                         self.present(alert, animated: true)
+                    })
+                    //incorret credentials
+                }
+            }
+              
            })
            task.resume()
         
